@@ -55,7 +55,7 @@ public:
 private:
     // Fields
     int fNumber; // the dice roll number needed to collect
-    string fResource // the type of resource
+    string fResource; // the type of resource
 };
 
 #endif //PROJECT4_TILE_H
