@@ -56,10 +56,19 @@ public:
     // Requires: ostream and Tile object
     // Modifies: nothing
     // Effects: prints out the Tile's two fields
-    friend ostream& operator << (ostream& outs, const Tile &tile) {
-        outs << tile.getResource() << " (" << tile.getNumber() << ") ";
-        return outs;
-    }
+    friend ostream& operator << (ostream& outs, const Tile &tile);
+
+    // Overloaded < Operator
+    // Requires: two Tile objects
+    // Modifies: nothing
+    // Effects: returns true if lhs Tile number is less than the rhs Tile number and false otherwise
+    friend bool operator < (const Tile &lhs, const Tile &rhs);
+
+    // Overloaded < Operator
+    // Requires: two Tile objects
+    // Modifies: nothing
+    // Effects: returns true if lhs Tile number is equal to the rhs Tile number and false otherwise
+    friend bool operator == (const Tile &lhs, const Tile &rhs);
 
 private:
     // Fields

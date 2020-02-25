@@ -36,3 +36,22 @@ void Tile::setNumber(int pNumber) {
 void Tile::setResource(string pResource) {
     fResource = pResource;
 }
+
+
+// Overloaded Operators
+
+// <<
+ostream& operator << (ostream& outs, const Tile &tile) {
+    outs << tile.getResource() << " (" << tile.getNumber() << ") ";
+    return outs;
+}
+
+// <
+bool operator < (const Tile &lhs, const Tile &rhs) {
+    return lhs.fNumber < rhs.fNumber;
+}
+
+// ==
+bool operator == (const Tile &lhs, const Tile &rhs) {
+    return lhs.fNumber == rhs.fNumber;
+}
