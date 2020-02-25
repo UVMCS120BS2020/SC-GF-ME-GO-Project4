@@ -7,7 +7,7 @@
 #define PROJECT4_TILE_H
 
 #include <ostream>
-
+#include <vector>
 using namespace std;
 
 /********** Tile Class **********/
@@ -51,6 +51,15 @@ public:
     // Effects: sets Tile object field to new param value
     void setNumber(int pNumber);
     void setResource(string pResource);
+
+    // Overloaded << Operator
+    // Requires: ostream and Tile object
+    // Modifies: nothing
+    // Effects: prints out the Tile's two fields
+    friend ostream& operator << (ostream& outs, const Tile &tile) {
+        outs << tile.getResource() << " (" << tile.getNumber() << ") ";
+        return outs;
+    }
 
 private:
     // Fields

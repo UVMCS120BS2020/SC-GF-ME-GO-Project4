@@ -5,9 +5,12 @@
 
 #include "Items.h"
 #include "Tile.h"
+#include <iostream>
 
 using namespace std;
 
 int main() {
+    Tile test = Tile(6, "Wood");
+    cout << test << endl;
     return 0;
 }
