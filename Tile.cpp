@@ -3,11 +3,4 @@
 // CS 120B
 // Project 4
 
-#include "Items.h"
 #include "Tile.h"
-
-using namespace std;
-
-int main() {
-    return 0;
-}

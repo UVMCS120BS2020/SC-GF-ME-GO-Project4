@@ -1,3 +1,8 @@
+// Sean Cosgrove, Molly Eaton and Gavin O'Sullivan
+// Lisa Dion
+// CS 120B
+// Project 4
+
 #ifndef PROJECT4_ITEMS_H
 #define PROJECT4_ITEMS_H
 
@@ -5,8 +10,10 @@
 #include <ostream>
 
 using namespace std;
-
 template <typename Object>
+
+/********** Items Class **********/
+
 class Items {
 public:
     // Constructor
