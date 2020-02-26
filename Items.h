@@ -40,9 +40,9 @@ public:
     // Requires: Object to search for in fList
     // Modifies: nothing
     // Effects: Searches for specified item in fList. return index of item in vector if found and -1 otherwise
-    int find(Object object) {
-        for (int i = 0; i < fList.size(); i++) {
-            if (fList.get(i) == object) {
+    int find(vector<Object> vec, Object object) {
+        for (int i = 0; i < vec.size(); i++) {
+            if (vec.get(i) == object) {
                 return i;
             }
         }
@@ -55,7 +55,7 @@ public:
     // Effects: randomizes order of objects in fList
     void randomizeSC();
 
-    void randomizeME();
+    vector<Object>  randomizeME();
 
     void randomizeGO() {
         for (int i = 0; i < fList.size(); i++) {
@@ -72,10 +72,19 @@ public:
     void testRandomizer() {
         //create tester vector with integers in sorted order
         vector<int> testVec = {0,1,2,3,4};
-        fList = testVec;
+
+        //create vector to hold all possible permutations of the test vector
         vector<vector<int>> permHolder;
 
-        //find all possible permutations of the vector
+        //create vector that matches with possible permutations and starts with all 0's
+        //will hold the final counts of each permutation created with randomize functions
+        vector<int> counts(permHolder.size(), 0);
+
+        int testSamples = 1000;
+        double expectedCount = double(testSamples)/permHolder.size();
+        double totalDifference = 0;
+
+        //find all possible permutations of the vector and add to vector
         do {
             permHolder.push_back(testVec);
             for (int i = 0; i < testVec.size(); ++i) {
@@ -85,13 +94,18 @@ public:
 
         } while ( std::next_permutation(testVec.begin(), testVec.end()) );
 
-        for(int i = 0; i < 100; ++i) {
+        for(int i = 0; i < testSamples; ++i) {
             //randomize the vector
             //find the shuffle permutation in possibilities
+            int index = find(permHolder, randomizeME());
             //increase count of that permutation
+            counts.at(index) = counts.at(index) + 1;
 
         }
         //compare the counts of all of the permutations vs. expected frequency
+        for (int i = 0; i < counts.size(); ++i) {
+            totalDifference += (counts.at(i)-expectedCount);
+        }
     }
 
     // Overloaded << operator
