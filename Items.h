@@ -7,7 +7,7 @@
 #define PROJECT4_ITEMS_H
 
 #include <vector>
-#include <ostream>
+#include <iostream>
 
 using namespace std;
 template <typename Object>
@@ -67,6 +67,31 @@ public:
             fList.at(i) = fList.at(rand);
             fList.at(rand) = temp;
         }
+    }
+
+    void testRandomizer() {
+        //create tester vector with integers in sorted order
+        vector<int> testVec = {0,1,2,3,4};
+        fList = testVec;
+        vector<vector<int>> permHolder;
+
+        //find all possible permutations of the vector
+        do {
+            permHolder.push_back(testVec);
+            for (int i = 0; i < testVec.size(); ++i) {
+                std::cout << testVec[i] << " ";
+            }
+            cout << '\n';
+
+        } while ( std::next_permutation(testVec.begin(), testVec.end()) );
+
+        for(int i = 0; i < 100; ++i) {
+            //randomize the vector
+            //find the shuffle permutation in possibilities
+            //increase count of that permutation
+
+        }
+        //compare the counts of all of the permutations vs. expected frequency
     }
 
     // Overloaded << operator
