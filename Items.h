@@ -34,7 +34,7 @@ public:
     // Modifies: fList
     // Effects: sorts fList of objects in ascending order of value
     void sort() {
-        
+
     }
 
     // Requires: Object to search for in fList
@@ -54,8 +54,20 @@ public:
     // Modifies: fList
     // Effects: randomizes order of objects in fList
     void randomizeSC();
+
     void randomizeME();
-    void randomizeGO();
+
+    void randomizeGO() {
+        for (int i = 0; i < fList.size(); i++) {
+            // get random index to swap with
+            int rand = 0;
+
+            // perform swap
+            Object temp = fList.at(i);
+            fList.at(i) = fList.at(rand);
+            fList.at(rand) = temp;
+        }
+    }
 
     // Overloaded << operator
     // Requires: ostream and items object
