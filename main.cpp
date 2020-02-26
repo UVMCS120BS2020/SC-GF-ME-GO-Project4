@@ -11,13 +11,11 @@
 
 using namespace std;
 
+
+
 int main() {
-    vector<int> v = {1,2,3,4};
-    cout << "The 4! possible permutations with 3 elements:\n";
-   // std::sort (myints,myints+3);
-    do {
-        cout << v[0] << ' ' << v[1] << ' ' << v[2] << ' ' << v[3] << '\n';
-    } while ( std::next_permutation(v.begin(), v.end()) );
+    vector<int> testVec = {1,2,3,4,5};
+
 
     Tile test = Tile(6, "Wood");
     cout << test << endl;
