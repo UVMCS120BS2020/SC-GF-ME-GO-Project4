@@ -18,46 +18,53 @@ class Items {
 public:
     // Constructor
     // Requires: a vector
-    // Modifies: list
-    // Effects: initializes list field with given specified data
-    Items(vector<Object> list) : list(list) {}
+    // Modifies: fList
+    // Effects: initializes fList field with given specified data
+    Items(vector<Object> list) : fList(list) {}
+
+    // Requires: nothing
+    // Modifies: fList
+    // Effects: sorts fList of objects in ascending order of value
+    void sort();
+
+    // Requires: Object to search for in fList
+    // Modifies: nothing
+    // Effects: Searches for specified item in fList. return index of item in vector if found and -1 otherwise
+    int find(Object object) {
+        for (int i = 0; i < fList.size(); i++) {
+            if (fList.get(i) == object) {
+                return i;
+            }
+        }
+        return -1;
+    }
+
+    // Randomization Methods
+    // Requires: nothing
+    // Modifies: fList
+    // Effects: randomizes order of objects in fList
+    void randomizeSC();
+    void randomizeME();
+    void randomizeGO();
 
     // Overloaded << operator
     // Requires: ostream and items object
     // Modifies: nothing
-    // Effects: prints out all objects held in list
+    // Effects: prints out all objects held in fList
     friend ostream& operator << (ostream& outs, const Items &items) {
-        outs << "Items held in list vector: ";
-        for (int i = 0; i < items.list.size(); i++) {
+        outs << "Items held in fList vector: ";
+        for (int i = 0; i < items.fList.size(); i++) {
             if (i == 0) {
-                outs << items.list.at(i);
+                outs << items.fList.at(i);
             } else {
-                outs << ", " << items.list.at(i);
+                outs << ", " << items.fList.at(i);
             }
         }
         return outs;
     }
 
-    // Requires: nothing
-    // Modifies: list
-    // Effects: sorts list of objects in ascending order of value
-    void sort();
-
-    // Requires: Object to search for in list
-    // Modifies: nothing
-    // Effects: Searches for specified item in list. return true if found and false otherwise
-    bool find(Object object);
-
-    // Randomization Methods
-    // Requires: nothing
-    // Modifies: list
-    // Effects: randomizes order of objects in list
-    void randomizeSC();
-    void randomizeME();
-    void randomizeGO();
-
 private:
-    vector<Object> list;
+    vector<Object> fList;
 };
 
 
