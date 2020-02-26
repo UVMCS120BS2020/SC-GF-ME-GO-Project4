@@ -22,10 +22,20 @@ public:
     // Effects: initializes fList field with given specified data
     Items(vector<Object> list) : fList(list) {}
 
+    // Getters
+    // Requires: nothing
+    // Modifies: nothing
+    // Effects: returns value of field requested
+    vector<Object> getList() {
+        return fList;
+    }
+
     // Requires: nothing
     // Modifies: fList
     // Effects: sorts fList of objects in ascending order of value
-    void sort();
+    void sort() {
+        
+    }
 
     // Requires: Object to search for in fList
     // Modifies: nothing
