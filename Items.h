@@ -55,7 +55,19 @@ public:
     // Effects: randomizes order of objects in fList
     void randomizeSC();
 
-    vector<Object>  randomizeME();
+    vector<Object>  randomizeME(){
+        vector<Object> temp = {};
+        string resource;
+        for (int i = 0 ;i < fList.size(); ++i){
+            int hash = 0;
+            resource = fList.at(i).getResource();
+            for (int i = 0; i < resource.length(); ++i) {
+                hash += (resource[i]);
+            }
+            temp.insert((hash%fList.size()), fList.at(i));
+        }
+        return temp;
+    }
 
     void randomizeGO() {
         for (int i = 0; i < fList.size(); i++) {
