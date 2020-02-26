@@ -86,7 +86,8 @@ public:
     void randomizeGO() {
         for (int i = 0; i < fList.size(); i++) {
             // get random index to swap with
-            int rand = 0;
+            // use memory address of object held and prime number 47 to get random index
+            int rand = (int) &fList.at(i) * 47 % fList.size();
 
             // perform swap
             Object temp = fList.at(i);
