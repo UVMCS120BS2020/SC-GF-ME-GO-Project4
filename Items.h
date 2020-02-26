@@ -34,7 +34,21 @@ public:
     // Modifies: fList
     // Effects: sorts fList of objects in ascending order of value
     void sort() {
-
+        // Insertion sort
+        for (int i = 0; i < fList.size(); i++) {
+            for (int j = i; j > 0; j--) {
+                if (fList.at(j) < fList.at(j - 1)) {
+                    // perform swap
+                    Object temp = fList.at(j);
+                    fList.at(j) = fList.at(j - 1);
+                    fList.at(j - 1) = temp;
+                } else {
+                    // object is greater than or equal to all elements below it
+                    // go to next object in list
+                    break;
+                }
+            }
+        }
     }
 
     // Requires: Object to search for in fList
