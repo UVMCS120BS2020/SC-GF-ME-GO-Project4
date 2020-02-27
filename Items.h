@@ -55,7 +55,7 @@ public:
     // Requires: Object to search for in fList
     // Modifies: nothing
     // Effects: Searches for specified item in fList. return index of item in vector if found and -1 otherwise
-    int find(vector<Object> vec, Object object) {
+    int findObject(vector<Object> vec, Object object) {
         for (int i = 0; i < vec.size(); i++) {
             if (vec.get(i) == object) {
                 return i;
@@ -68,7 +68,9 @@ public:
     // Requires: nothing
     // Modifies: fList
     // Effects: randomizes order of objects in fList
-    void randomizeSC();
+    void randomizeSC() {
+
+    }
 
     vector<Object>  randomizeME(){
         vector<Object> temp = {};
@@ -101,6 +103,14 @@ public:
         //create vector to hold all possible permutations of the test vector
         vector<vector<int>> permHolder;
 
+        //sort the list
+        sort();
+        //find all possible permutations of the list and add to vector
+        do {
+            permHolder.push_back(fList);
+
+        } while ( std::next_permutation(fList.begin(), fList.end()));
+
         //create vector that matches with possible permutations and starts with all 0's
         //will hold the final counts of each permutation created with randomize functions
         vector<int> counts(permHolder.size(), 0);
@@ -112,29 +122,18 @@ public:
         //initialize the difference count
         double totalDifference = 0;
 
-        //sort the list
-        fList.sort();
-        //find all possible permutations of the list and add to vector
-        do {
-            permHolder.push_back(fList);
-            for (int i = 0; i < fList.size(); ++i) {
-                std::cout << fList[i] << " ";
-            }
-            cout << '\n';
-
-        } while ( std::next_permutation(fList.begin(), fList.end()) );
-
         //run through the randomizer and keep track of counts for every permutation that results
         for(int i = 0; i < testSamples; ++i) {
             //randomize the vector
-            fList.randomizeGO();
+            randomizeGO();
             //find the shuffle permutation in possibilities
-            int index = find(permHolder, randomizeME());
+            auto iteration = find(permHolder.begin(), permHolder.end(), fList);
+            int index = distance(permHolder.begin(), iteration);
             //increase count of that permutation
             counts.at(index) = counts.at(index) + 1;
 
             //sort the list so that the randomizer starts at the same place every times
-            fList.sort();
+            sort();
 
         }
         //compare the counts of all of the permutations vs. expected frequency
@@ -150,14 +149,15 @@ public:
         //run through the randomizer and keep track of counts for every permutation that results
         for(int i = 0; i < testSamples; ++i) {
             //randomize the vector
-            fList.randomizeME();
+            randomizeME();
             //find the shuffle permutation in possibilities
-            int index = find(permHolder, randomizeME());
+            auto iteration = find(permHolder.begin(), permHolder.end(), fList);
+            int index = distance(permHolder.begin(), iteration);
             //increase count of that permutation
             counts.at(index) = counts.at(index) + 1;
 
             //sort the list so that the randomizer starts at the same place every times
-            fList.sort();
+            sort();
 
         }
         //compare the counts of all of the permutations vs. expected frequency
@@ -173,14 +173,15 @@ public:
         //run through the randomizer and keep track of counts for every permutation that results
         for(int i = 0; i < testSamples; ++i) {
             //randomize the vector
-            fList.randomizeSC();
+            randomizeSC();
             //find the shuffle permutation in possibilities
-            int index = find(permHolder, randomizeME());
+            auto iteration = find(permHolder.begin(), permHolder.end(), fList);
+            int index = distance(permHolder.begin(), iteration);
             //increase count of that permutation
             counts.at(index) = counts.at(index) + 1;
 
             //sort the list so that the randomizer starts at the same place every times
-            fList.sort();
+            sort();
 
         }
         //compare the counts of all of the permutations vs. expected frequency
