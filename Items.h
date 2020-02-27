@@ -8,6 +8,7 @@
 
 #include <vector>
 #include <iostream>
+#include <cmath>
 
 using namespace std;
 template <typename Object>
@@ -97,9 +98,6 @@ public:
     }
 
     void testRandomizer() {
-        //create tester vector with integers in sorted order
-        vector<int> testVec = {0,1,2,3,4};
-
         //create vector to hold all possible permutations of the test vector
         vector<vector<int>> permHolder;
 
@@ -107,32 +105,91 @@ public:
         //will hold the final counts of each permutation created with randomize functions
         vector<int> counts(permHolder.size(), 0);
 
+        //set the number of runs to do for testing
         int testSamples = 1000;
+        //the expected count for every permutation should be an equal count
         double expectedCount = double(testSamples)/permHolder.size();
+        //initialize the difference count
         double totalDifference = 0;
 
-        //find all possible permutations of the vector and add to vector
+        //sort the list
+        fList.sort();
+        //find all possible permutations of the list and add to vector
         do {
-            permHolder.push_back(testVec);
-            for (int i = 0; i < testVec.size(); ++i) {
-                std::cout << testVec[i] << " ";
+            permHolder.push_back(fList);
+            for (int i = 0; i < fList.size(); ++i) {
+                std::cout << fList[i] << " ";
             }
             cout << '\n';
 
-        } while ( std::next_permutation(testVec.begin(), testVec.end()) );
+        } while ( std::next_permutation(fList.begin(), fList.end()) );
 
+        //run through the randomizer and keep track of counts for every permutation that results
         for(int i = 0; i < testSamples; ++i) {
             //randomize the vector
+            fList.randomizeGO();
             //find the shuffle permutation in possibilities
             int index = find(permHolder, randomizeME());
             //increase count of that permutation
             counts.at(index) = counts.at(index) + 1;
 
+            //sort the list so that the randomizer starts at the same place every times
+            fList.sort();
+
         }
         //compare the counts of all of the permutations vs. expected frequency
         for (int i = 0; i < counts.size(); ++i) {
-            totalDifference += (counts.at(i)-expectedCount);
+            totalDifference += abs(counts.at(i)-expectedCount);
         }
+        cout << "Total differences for the GO randomizer: " << totalDifference << endl;
+        //clear the counts vector and remake as all 0's
+        counts.clear();
+        counts.assign(permHolder.size(), 0);
+        totalDifference = 0;
+
+        //run through the randomizer and keep track of counts for every permutation that results
+        for(int i = 0; i < testSamples; ++i) {
+            //randomize the vector
+            fList.randomizeME();
+            //find the shuffle permutation in possibilities
+            int index = find(permHolder, randomizeME());
+            //increase count of that permutation
+            counts.at(index) = counts.at(index) + 1;
+
+            //sort the list so that the randomizer starts at the same place every times
+            fList.sort();
+
+        }
+        //compare the counts of all of the permutations vs. expected frequency
+        for (int i = 0; i < counts.size(); ++i) {
+            totalDifference += abs(counts.at(i)-expectedCount);
+        }
+        cout << "Total differences for the ME randomizer: " << totalDifference << endl;
+        //clear the counts vector and remake as all 0's
+        counts.clear();
+        counts.assign(permHolder.size(), 0);
+        totalDifference = 0;
+
+        //run through the randomizer and keep track of counts for every permutation that results
+        for(int i = 0; i < testSamples; ++i) {
+            //randomize the vector
+            fList.randomizeSC();
+            //find the shuffle permutation in possibilities
+            int index = find(permHolder, randomizeME());
+            //increase count of that permutation
+            counts.at(index) = counts.at(index) + 1;
+
+            //sort the list so that the randomizer starts at the same place every times
+            fList.sort();
+
+        }
+        //compare the counts of all of the permutations vs. expected frequency
+        for (int i = 0; i < counts.size(); ++i) {
+            totalDifference += abs(counts.at(i)-expectedCount);
+        }
+        cout << "Total differences for the SC randomizer: " << totalDifference << endl;
+
+
     }
 
     // Overloaded << operator
