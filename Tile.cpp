@@ -37,36 +37,51 @@ void Tile::setResource(string pResource) {
     fResource = pResource;
 }
 
+// Randomize Tile
 Tile Tile::randomizeTile() {
+    // initialize timestamp and variables
     srand(time(NULL));
     Tile returnTile;
     int randomNumber;
+    // call randomizeResource function
     string randomResource = returnTile.randomizeResource();
+    // randomResource is desert
     if (randomResource == "desert") {
-        randomNumber = 7;
+        randomNumber = 7; // set randomNumber to seven for robber
+    // randomResource is not desert
     } else {
+        // call randomizeNumber function
         randomNumber = returnTile.randomizeNumber();
     }
+    // create Tile object with random fields and return
     returnTile = Tile(randomNumber, randomResource);
     return returnTile;
 }
 
+// Randomize Number
 int Tile::randomizeNumber() {
+    // initialize timestamp and variables
     srand(time(NULL));
     int returnNumber;
     int maxNumberRand = 19;
     vector<int> possibleNumbers = {2, 3, 3, 4, 4, 5, 5, 6, 6, 8, 8, 9, 9, 10, 10, 11, 11, 12};
+    // use rand function to get random index value
     int randomNumberIndex = rand() % maxNumberRand;
+    // get randomNumber from vector of possible values and return
     returnNumber = possibleNumbers[randomNumberIndex];
     return returnNumber;
 }
 
+// Randomize Resource
 string Tile::randomizeResource() {
+    // initialize timestamp and variables
     srand(time(NULL));
     string returnResource;
     int maxResourceRand = 20;
     vector<string> possibleResources = {"wood", "wood", "wood", "wood", "sheep", "sheep", "sheep", "sheep", "wheat", "wheat", "wheat", "wheat", "brick", "brick", "brick", "stone", "stone", "stone", "desert"};
+    // use rand function to get random index value
     int randomResourceIndex = rand() % maxResourceRand;
+    // get randomResource from vector of possible values and return
     returnResource = possibleResources[randomResourceIndex];
     return returnResource;
 }

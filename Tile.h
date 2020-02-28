@@ -53,8 +53,22 @@ public:
     void setNumber(int pNumber);
     void setResource(string pResource);
 
+    // Randomize Tile
+    // Requires: nothing
+    // Modifies: nothing
+    // Effects: returns random Tile object
     Tile randomizeTile();
+
+    // Randomize Number
+    // Requires: nothing
+    // Modifies: nothing
+    // Effects: returns random int from possible values
     int randomizeNumber();
+
+    // Randomize Resource
+    // Requires: nothing
+    // Modifies: nothing
+    // Effects: returns random string from possible values
     string randomizeResource();
 
     // Overloaded << Operator
