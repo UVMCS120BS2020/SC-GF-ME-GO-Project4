@@ -8,6 +8,7 @@
 
 #include <ostream>
 #include <vector>
+#include <time.h>
 using namespace std;
 
 /********** Tile Class **********/
@@ -51,6 +52,10 @@ public:
     // Effects: sets Tile object field to new param value
     void setNumber(int pNumber);
     void setResource(string pResource);
+
+    Tile randomizeTile();
+    int randomizeNumber();
+    string randomizeResource();
 
     // Overloaded << Operator
     // Requires: ostream and Tile object

@@ -37,6 +37,39 @@ void Tile::setResource(string pResource) {
     fResource = pResource;
 }
 
+Tile Tile::randomizeTile() {
+    srand(time(NULL));
+    Tile returnTile;
+    int randomNumber;
+    string randomResource = returnTile.randomizeResource();
+    if (randomResource == "desert") {
+        randomNumber = 7;
+    } else {
+        randomNumber = returnTile.randomizeNumber();
+    }
+    returnTile = Tile(randomNumber, randomResource);
+    return returnTile;
+}
+
+int Tile::randomizeNumber() {
+    srand(time(NULL));
+    int returnNumber;
+    int maxNumberRand = 19;
+    vector<int> possibleNumbers = {2, 3, 3, 4, 4, 5, 5, 6, 6, 8, 8, 9, 9, 10, 10, 11, 11, 12};
+    int randomNumberIndex = rand() % maxNumberRand;
+    returnNumber = possibleNumbers[randomNumberIndex];
+    return returnNumber;
+}
+
+string Tile::randomizeResource() {
+    srand(time(NULL));
+    string returnResource;
+    int maxResourceRand = 20;
+    vector<string> possibleResources = {"wood", "wood", "wood", "wood", "sheep", "sheep", "sheep", "sheep", "wheat", "wheat", "wheat", "wheat", "brick", "brick", "brick", "stone", "stone", "stone", "desert"};
+    int randomResourceIndex = rand() % maxResourceRand;
+    returnResource = possibleResources[randomResourceIndex];
+    return returnResource;
+}
 
 // Overloaded Operators
 

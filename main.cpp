@@ -17,7 +17,8 @@ int main() {
     vector<int> testVec = {1,2,3,4,5};
 
 
-    Tile test = Tile(6, "Wood");
+    Tile test;
+    test = test.randomizeTile();
     cout << test << endl;
 
     // Test sort
