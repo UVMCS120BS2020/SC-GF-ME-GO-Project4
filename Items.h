@@ -9,6 +9,7 @@
 #include <vector>
 #include <iostream>
 #include <cmath>
+#include "Tile.h"
 
 using namespace std;
 template <typename Object>
@@ -68,8 +69,26 @@ public:
     // Requires: nothing
     // Modifies: fList
     // Effects: randomizes order of objects in fList
-    void randomizeSC() {
-
+    vector<Object> randomizeSC() {
+        // initialize return vector
+        vector<Object> returnVector = {};
+        // iterate through loop for 19 Tiles
+        for (int i = 0; i < 19; i++) {
+            // create and randomize new Tile object
+            Tile newTile;
+            newTile = newTile.randomizeTile();
+            // check to see if this Tile is already in the vector
+            for (int i = 0; i < fList.size(); i++) {
+                // randomize Tile until a new one is created
+                while (findObject(returnVector, newTile) != 1) {
+                    newTile = newTile.randomizeTile();
+                }
+            }
+            // push new Tile object to vector
+            returnVector.push_back(newTile);
+        }
+        // return vector of Tile objects
+        return returnVector;
     }
 
     vector<Object>  randomizeME(){
