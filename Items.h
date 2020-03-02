@@ -154,8 +154,10 @@ public:
 
         //set the number of runs to do for testing
         int testSamples = 100;
+        cout << "Running " << testSamples << " randomization tests on vector." << endl;
         //the expected count for every permutation should be an equal count
         double expectedCount = double(testSamples)/permHolder.size();
+        cout << "Expected count for each permutation: " << expectedCount << endl << endl;
         //initialize the difference count
         double totalDifference = 0;
 
@@ -164,8 +166,7 @@ public:
             //randomize the vector
             randomizeGO();
             //find the shuffle permutation in possibilities
-            auto iteration = find(permHolder.begin(), permHolder.end(), fList);
-            int index = distance(permHolder.begin(), iteration);
+            int index = find(permHolder, fList);
             //increase count of that permutation
             counts.at(index) = counts.at(index) + 1;
 
