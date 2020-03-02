@@ -33,12 +33,12 @@ int main() {
 
     cout << "************* Randomization Method Test - Tile Vector *************" << endl;
     vector<Tile> testVectTile;
-    for (int i = 0; i < 10; i++) {
+    for (int i = 0; i < 7; i++) {
         Tile newTile;
-        newTile.randomizeTile();
+        newTile = newTile.randomizeTile();
         testVectTile.push_back(newTile);
     }
-    Items<int> itemsTile(testVectInt);
+    Items<Tile> itemsTile(testVectTile);
     itemsTile.testRandomizer();
 
     return 0;
