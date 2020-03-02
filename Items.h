@@ -6,6 +6,7 @@
 #ifndef PROJECT4_ITEMS_H
 #define PROJECT4_ITEMS_H
 
+#include <algorithm>
 #include <vector>
 #include <iostream>
 #include <cmath>
@@ -24,7 +25,9 @@ public:
     // Requires: a vector
     // Modifies: fList
     // Effects: initializes fList field with given specified data
-    Items(vector<Object> list) : fList(list) {}
+    Items(vector<Object> list) : fList(list) {
+        srand((unsigned) time(NULL));
+    }
 
     // Getters
     // Requires: nothing
@@ -120,11 +123,11 @@ public:
 
     vector<Object>  randomizeME(){
 
-        srand((unsigned) time(NULL));
+
         for (int i = 0 ;i < fList.size(); ++i){
             int r = rand() %fList.size();
 
-            iter_swap(fList.begin() + i, fList.begin() + r);
+            swap(fList[i], fList[r]);
 
         }
 
