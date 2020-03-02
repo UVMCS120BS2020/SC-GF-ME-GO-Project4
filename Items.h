@@ -10,6 +10,7 @@
 #include <vector>
 #include <iostream>
 #include <cmath>
+#include <cstdlib>
 #include <chrono>
 #include "Tile.h"
 #include "time.h"
@@ -153,6 +154,22 @@ public:
             fList.at(i) = fList.at(randIndex);
             fList.at(randIndex) = temp;
         }
+    }
+
+    vector<Object> randomizeGF(vector<Object> fList){
+        int randomGF = 0;
+        vector<int> takenNum;
+        // for every item in fList, assign random position
+        for (int i = 0; i < fList.size(); ++i){
+            randomGF = rand()%fList.size();
+            // make sure the random isn't already chosen
+            while (find(takenNum.begin(), takenNum.end(), randomGF) != takenNum.end()){
+                randomGF = rand()%fList.size();
+            }
+            takenNum.push_back(randomGF);
+            swap(fList[i], fList[randomGF]);
+        }
+        return fList;
     }
 
     void testRandomizer() {
