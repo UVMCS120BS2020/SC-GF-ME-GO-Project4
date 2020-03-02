@@ -143,7 +143,7 @@ public:
             long long timeHash = chrono::duration_cast<chrono::nanoseconds>(nano.time_since_epoch()).count();
 
             // use random constant each time to add variability to index
-            int randConst = (int) (timeHash % 47) + 1;
+            randConst = (int) (timeHash * 47) + randConst;
 
             // Use timeHash to get a random index to swap with
             int randIndex = (int)(abs(timeHash + randConst) % fList.size());
@@ -157,7 +157,7 @@ public:
 
     void testRandomizer() {
         //create vector to hold all possible permutations of the test vector
-        vector<vector<int>> permHolder;
+        vector<vector<Object>> permHolder;
 
         //sort the list
         sort();
@@ -172,7 +172,7 @@ public:
         vector<int> counts(permHolder.size(), 0);
 
         //set the number of runs to do for testing
-        int testSamples = 100;
+        int testSamples = 1000;
         cout << "Running " << testSamples << " randomization tests on vector." << endl;
         //the expected count for every permutation should be an equal count
         double expectedCount = double(testSamples)/permHolder.size();
@@ -276,6 +276,7 @@ public:
 
 private:
     vector<Object> fList;
+    int randConst = 7; // used for randomizeGO random number generation
 };
 
 
