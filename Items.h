@@ -159,29 +159,29 @@ public:
         //initialize the difference count
         double totalDifference = 0;
 
-        //run through the randomizer and keep track of counts for every permutation that results
-//        for(int i = 0; i < testSamples; ++i) {
-//            //randomize the vector
-//            randomizeGO();
-//            //find the shuffle permutation in possibilities
-//            auto iteration = find(permHolder.begin(), permHolder.end(), fList);
-//            int index = distance(permHolder.begin(), iteration);
-//            //increase count of that permutation
-//            counts.at(index) = counts.at(index) + 1;
-//
-//            //sort the list so that the randomizer starts at the same place every times
-//            sort();
-//
-//        }
-//        //compare the counts of all of the permutations vs. expected frequency
-//        for (int i = 0; i < counts.size(); ++i) {
-//            totalDifference += abs(counts.at(i)-expectedCount);
-//        }
-//        cout << "Total differences for the GO randomizer: " << totalDifference << endl;
-//        //clear the counts vector and remake as all 0's
-//        counts.clear();
-//        counts.assign(permHolder.size(), 0);
-//        totalDifference = 0;
+        // run through the randomizer and keep track of counts for every permutation that results
+        for(int i = 0; i < testSamples; ++i) {
+            //randomize the vector
+            randomizeGO();
+            //find the shuffle permutation in possibilities
+            auto iteration = find(permHolder.begin(), permHolder.end(), fList);
+            int index = distance(permHolder.begin(), iteration);
+            //increase count of that permutation
+            counts.at(index) = counts.at(index) + 1;
+
+            //sort the list so that the randomizer starts at the same place every times
+            sort();
+
+        }
+        //compare the counts of all of the permutations vs. expected frequency
+        for (int i = 0; i < counts.size(); ++i) {
+            totalDifference += abs(counts.at(i)-expectedCount);
+        }
+        cout << "Total differences for the GO randomizer: " << totalDifference << endl;
+        //clear the counts vector and remake as all 0's
+        counts.clear();
+        counts.assign(permHolder.size(), 0);
+        totalDifference = 0;
 
         //run through the randomizer and keep track of counts for every permutation that results
         for(int i = 0; i < testSamples; ++i) {
