@@ -29,7 +29,7 @@ int main() {
     }
     Items<int> itemsInt(testVectInt);
     itemsInt.testRandomizer();
-    cout << endl;
+    cout << endl << endl;
 
     cout << "************* Randomization Method Test - Tile Vector *************" << endl;
     vector<Tile> testVectTile;
