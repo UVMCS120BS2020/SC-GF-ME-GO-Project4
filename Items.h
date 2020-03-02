@@ -34,6 +34,22 @@ public:
         return fList;
     }
 
+    // Overloaded << operator
+    // Requires: ostream and items object
+    // Modifies: nothing
+    // Effects: prints out all objects held in fList
+    friend ostream& operator << (ostream& outs, const Items &items) {
+        outs << "Items held in fList vector: ";
+        for (int i = 0; i < items.fList.size(); i++) {
+            if (i == 0) {
+                outs << items.fList.at(i);
+            } else {
+                outs << ", " << items.fList.at(i);
+            }
+        }
+        return outs;
+    }
+
     // Requires: nothing
     // Modifies: fList
     // Effects: sorts fList of objects in ascending order of value
@@ -104,7 +120,7 @@ public:
 
     vector<Object>  randomizeME(){
 
-        srand((unsigned) time(0));
+        srand((unsigned) time(NULL));
         for (int i = 0 ;i < fList.size(); ++i){
             int r = rand() %fList.size();
 
@@ -161,13 +177,12 @@ public:
 
         // run through the randomizer and keep track of counts for every permutation that results
         for(int i = 0; i < testSamples; ++i) {
-            //randomize the vector
             randomizeGO();
-            //find the shuffle permutation in possibilities
-            auto iteration = find(permHolder.begin(), permHolder.end(), fList);
-            int index = distance(permHolder.begin(), iteration);
+            //find the index in the permutations
+            int index = find(permHolder, fList);
+
             //increase count of that permutation
-            counts.at(index) = counts.at(index) + 1;
+            counts[index] += 1;
 
             //sort the list so that the randomizer starts at the same place every times
             sort();
@@ -175,24 +190,25 @@ public:
         }
         //compare the counts of all of the permutations vs. expected frequency
         for (int i = 0; i < counts.size(); ++i) {
-            totalDifference += abs(counts.at(i)-expectedCount);
+            totalDifference += abs(counts[i]-expectedCount);
         }
-        cout << "Total differences for the GO randomizer: " << totalDifference << endl;
+        cout << "\nTotal differences for the GO randomizer: " << totalDifference << endl;
         //clear the counts vector and remake as all 0's
+        for (int i = 0; i < counts.size(); ++i){
+            cout << counts[i] << ",";
+        }
         counts.clear();
         counts.assign(permHolder.size(), 0);
         totalDifference = 0;
 
         //run through the randomizer and keep track of counts for every permutation that results
         for(int i = 0; i < testSamples; ++i) {
-            //randomize the vector
-            //randomizeME();
-            int index = find(permHolder, randomizeME());
-            //find the shuffle permutation in possibilities
-//            auto iteration = find(permHolder.begin(), permHolder.end(), fList);
-//            int index = distance(permHolder.begin(), iteration);
+            randomizeME();
+            //find the index in the permutations
+            int index = find(permHolder, fList);
+
             //increase count of that permutation
-            counts.at(index) = counts.at(index) + 1;
+            counts[index] += 1;
 
             //sort the list so that the randomizer starts at the same place every times
             sort();
@@ -200,10 +216,13 @@ public:
         }
         //compare the counts of all of the permutations vs. expected frequency
         for (int i = 0; i < counts.size(); ++i) {
-            totalDifference += abs(counts.at(i)-expectedCount);
+            totalDifference += abs(counts[i]-expectedCount);
         }
         cout << "\nTotal differences for the ME randomizer: " << totalDifference << endl;
         //clear the counts vector and remake as all 0's
+        for (int i = 0; i < counts.size(); ++i){
+            cout << counts[i] << ",";
+        }
         counts.clear();
         counts.assign(permHolder.size(), 0);
         totalDifference = 0;
@@ -231,21 +250,6 @@ public:
 
     }
 
-    // Overloaded << operator
-    // Requires: ostream and items object
-    // Modifies: nothing
-    // Effects: prints out all objects held in fList
-    friend ostream& operator << (ostream& outs, const Items &items) {
-        outs << "Items held in fList vector: ";
-        for (int i = 0; i < items.fList.size(); i++) {
-            if (i == 0) {
-                outs << items.fList.at(i);
-            } else {
-                outs << ", " << items.fList.at(i);
-            }
-        }
-        return outs;
-    }
 
 private:
     vector<Object> fList;
