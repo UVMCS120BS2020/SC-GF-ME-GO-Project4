@@ -77,9 +77,9 @@ public:
     // Requires: Object to search for in fList
     // Modifies: nothing
     // Effects: Searches for specified item in fList. return index of item in vector if found and -1 otherwise
-    int findObject(vector<Object> vec, Object object) {
-        for (int i = 0; i < vec.size(); i++) {
-            if (vec.get(i) == object) {
+    int findObject(Object object) {
+        for (int i = 0; i < fList.size(); i++) {
+            if (fList.get(i) == object) {
                 return i;
             }
         }
