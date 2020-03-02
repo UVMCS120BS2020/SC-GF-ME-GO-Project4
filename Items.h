@@ -9,6 +9,7 @@
 #include <vector>
 #include <iostream>
 #include <cmath>
+#include <chrono>
 #include "Tile.h"
 
 using namespace std;
@@ -106,10 +107,18 @@ public:
     }
 
     void randomizeGO() {
+        // loop through all items in fList vector
+        // for each iteration, get a random index and swap item with object at that index
         for (int i = 0; i < fList.size(); i++) {
-            // get random index to swap with
-            // use memory address of object held and prime number 47 to get random index
-            int randIndex = (int) &fList.at(i) * 47 % fList.size();
+            // Get time in nanoseconds to hash an index with
+            auto nano = chrono::high_resolution_clock::now();
+            long long timeHash = chrono::duration_cast<chrono::nanoseconds>(nano.time_since_epoch()).count();
+
+            // use random constant each time to add variability to index
+            int randConst = (int) (timeHash % 47) + 1;
+
+            // Use timeHash to get a random index to swap with
+            int randIndex = (int)(abs(timeHash + randConst) % fList.size());
 
             // perform swap
             Object temp = fList.at(i);
@@ -135,7 +144,7 @@ public:
         vector<int> counts(permHolder.size(), 0);
 
         //set the number of runs to do for testing
-        int testSamples = 1000;
+        int testSamples = 100;
         //the expected count for every permutation should be an equal count
         double expectedCount = double(testSamples)/permHolder.size();
         //initialize the difference count
