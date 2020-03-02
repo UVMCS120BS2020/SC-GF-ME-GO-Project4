@@ -21,14 +21,19 @@ int main() {
     test = test.randomizeTile();
     cout << test << endl;
 
+
     // Test sort
     vector<int> testVect;
-    for (int i = 0; i < 30; i++) {
+    for (int i = 0; i < 10; i++) {
         testVect.push_back(rand() % 25);
     }
     Items<int> items(testVect);
     cout << "Unsorted elements: " << items << endl;
     items.sort();
     cout << "Sorted elements: " << items << endl;
+
+    items.randomizeME();
+    cout << (cout, items);
+    items.testRandomizer();
     return 0;
 }
