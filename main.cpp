@@ -14,6 +14,7 @@ using namespace std;
 
 
 int main() {
+    srand(time(NULL));
     cout << "Testing effectiveness of each randomization method created" << endl;
     cout << "Evaluation Metrics:" << endl;
     cout << "Each permutation of the vector should have an equal likelihood of being created when randomized." << endl;
