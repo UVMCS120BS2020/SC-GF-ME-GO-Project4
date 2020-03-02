@@ -100,22 +100,18 @@ public:
     // Modifies: fList
     // Effects: randomizes order of objects in fList
     vector<Object> randomizeSC() {
-        // initialize return vector
-        vector<Object> returnVector = {};
-        // iterate through loop for 19 Tiles
-        for (int i = 0; i < 19; i++) {
-            // create and randomize new Tile object
-            Object newTile;
-            newTile = newTile.randomizeTile();
-            // check to see if this Tile is already in the vector
-            for (int i = 0; i < fList.size(); i++) {
-                // randomize Object until a new one is created
-                while (findObject(newTile) != 1) {
-                    newTile = newTile.randomizeTile();
+        // iterate through list
+        for (Object i : fList) {
+            // reiterate through list
+            for (Object j : fList) {
+                // swap different objects
+                if (i != j) {
+                    swap(fList[i], fList[j]);
+                // swap same object to last index position
+                } else {
+                    swap(fList[i], fList[fList.size() - 1]);
                 }
             }
-            // push new object to vector
-            fList.push_back(newTile);
         }
         // return vector of objects
         return fList;
