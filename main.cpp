@@ -14,10 +14,11 @@ using namespace std;
 
 
 int main() {
+    srand(time(NULL));
     cout << "Testing effectiveness of each randomization method created" << endl;
     cout << "Evaluation Metrics:" << endl;
     cout << "Each permutation of the vector should have an equal likelihood of being created when randomized." << endl;
-    cout << "The randomization test will determine the difference in probabilities between the expected count for each permutation " << endl;
+    cout << "The randomization test will determine the average difference in probabilities between the expected count for each permutation " << endl;
     cout << "and the actual count for a set number of test samples." << endl;
     cout << endl;
 
@@ -33,12 +34,12 @@ int main() {
 
     cout << "************* Randomization Method Test - Tile Vector *************" << endl;
     vector<Tile> testVectTile;
-    for (int i = 0; i < 10; i++) {
+    for (int i = 0; i < 5; i++) {
         Tile newTile;
-        newTile.randomizeTile();
+        newTile = newTile.randomizeTile();
         testVectTile.push_back(newTile);
     }
-    Items<int> itemsTile(testVectInt);
+    Items<Tile> itemsTile(testVectTile);
     itemsTile.testRandomizer();
 
     return 0;
