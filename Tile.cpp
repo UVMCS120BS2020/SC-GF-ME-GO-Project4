@@ -39,8 +39,7 @@ void Tile::setResource(string pResource) {
 
 // Randomize Tile
 Tile Tile::randomizeTile() {
-    // initialize timestamp and variables
-    srand(time(NULL));
+    // variables
     Tile returnTile;
     int randomNumber;
     // call randomizeResource function
@@ -60,8 +59,7 @@ Tile Tile::randomizeTile() {
 
 // Randomize Number
 int Tile::randomizeNumber() {
-    // initialize timestamp and variables
-    srand(time(NULL));
+    // initialize variables
     int returnNumber;
     int maxNumberRand = 19;
     vector<int> possibleNumbers = {2, 3, 3, 4, 4, 5, 5, 6, 6, 8, 8, 9, 9, 10, 10, 11, 11, 12};
@@ -74,8 +72,7 @@ int Tile::randomizeNumber() {
 
 // Randomize Resource
 string Tile::randomizeResource() {
-    // initialize timestamp and variables
-    srand(time(NULL));
+    // initialize variables
     string returnResource;
     int maxResourceRand = 20;
     vector<string> possibleResources = {"wood", "wood", "wood", "wood", "sheep", "sheep", "sheep", "sheep", "wheat", "wheat", "wheat", "wheat", "brick", "brick", "brick", "stone", "stone", "stone", "desert"};
