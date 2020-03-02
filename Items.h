@@ -178,7 +178,7 @@ public:
         double expectedCount = double(testSamples)/permHolder.size();
         cout << "Expected count for each permutation: " << expectedCount << endl;
         //initialize the difference count
-        double totalDifference = 0;
+        double avgDifference = 0;
 
         // run through the randomizer and keep track of counts for every permutation that results
         for(int i = 0; i < testSamples; ++i) {
@@ -195,11 +195,13 @@ public:
         }
         //compare the counts of all of the permutations vs. expected frequency
         for (int i = 0; i < counts.size(); ++i) {
-            totalDifference += abs(counts[i]-expectedCount);
+            avgDifference += abs(counts[i]-expectedCount);
         }
-        cout << "\nTotal differences for the GO randomizer: " << totalDifference << endl;
+        avgDifference /= counts.size();
+        cout << "\nAverage difference in expected count and actual count of permutations for the GO randomizer: " << avgDifference << endl;
         //clear the counts vector and remake as all 0's
-        cout << "Permutation count for GO: ";
+        cout << "Permutation count distribution vector for GO: ";
+        cout << "[";
         for (int i = 0; i < counts.size(); ++i){
             if (i == 0) {
                 cout << counts[i];
@@ -207,9 +209,10 @@ public:
                 cout << "," << counts[i];
             }
         }
+        cout << "]" << endl;
         counts.clear();
         counts.assign(permHolder.size(), 0);
-        totalDifference = 0;
+        avgDifference = 0;
 
         //run through the randomizer and keep track of counts for every permutation that results
         for(int i = 0; i < testSamples; ++i) {
@@ -226,11 +229,13 @@ public:
         }
         //compare the counts of all of the permutations vs. expected frequency
         for (int i = 0; i < counts.size(); ++i) {
-            totalDifference += abs(counts[i]-expectedCount);
+            avgDifference += abs(counts[i]-expectedCount);
         }
-        cout << "\nTotal differences for the ME randomizer: " << totalDifference << endl;
+        avgDifference /= counts.size();
+        cout << "\nAverage difference in expected count and actual count permutations for the ME randomizer: " << avgDifference << endl;
         //clear the counts vector and remake as all 0's
-        cout << "Permutation count for ME: ";
+        cout << "Permutation count distribution vector for ME: ";
+        cout << "[";
         for (int i = 0; i < counts.size(); ++i){
             if (i == 0) {
                 cout << counts[i];
@@ -238,9 +243,10 @@ public:
                 cout << "," << counts[i];
             }
         }
+        cout << "]" << endl;
         counts.clear();
         counts.assign(permHolder.size(), 0);
-        totalDifference = 0;
+        avgDifference = 0;
 
         //run through the randomizer and keep track of counts for every permutation that results
 //        for(int i = 0; i < testSamples; ++i) {
@@ -258,10 +264,12 @@ public:
 //        }
 //        //compare the counts of all of the permutations vs. expected frequency
 //        for (int i = 0; i < counts.size(); ++i) {
-//            totalDifference += abs(counts.at(i)-expectedCount);
+//            avgDifference += abs(counts.at(i)-expectedCount);
 //        }
-//        cout << "Total differences for the SC randomizer: " << totalDifference << endl;
+          // avgDifference /= counts.size();
+//        cout << "Average difference in expected count and actual count permutations for the SC randomizer: " << avgDifference << endl;
 //        cout << "Permutation count for SC: ";
+//        cout << "[";
 //        for (int i = 0; i < counts.size(); ++i){
 //            if (i == 0) {
 //                cout << counts[i];
@@ -269,6 +277,7 @@ public:
 //                cout << "," << counts[i];
 //            }
 //        }
+//        cout << "]" << endl;
 
 
     }
