@@ -173,8 +173,10 @@ public:
 
         //set the number of runs to do for testing
         int testSamples = 100;
+        cout << "Running " << testSamples << " randomization tests on vector." << endl;
         //the expected count for every permutation should be an equal count
         double expectedCount = double(testSamples)/permHolder.size();
+        cout << "Expected count for each permutation: " << expectedCount << endl;
         //initialize the difference count
         double totalDifference = 0;
 
@@ -197,8 +199,13 @@ public:
         }
         cout << "\nTotal differences for the GO randomizer: " << totalDifference << endl;
         //clear the counts vector and remake as all 0's
+        cout << "Permutation count for GO: ";
         for (int i = 0; i < counts.size(); ++i){
-            cout << counts[i] << ",";
+            if (i == 0) {
+                cout << counts[i];
+            } else {
+                cout << "," << counts[i];
+            }
         }
         counts.clear();
         counts.assign(permHolder.size(), 0);
@@ -223,8 +230,13 @@ public:
         }
         cout << "\nTotal differences for the ME randomizer: " << totalDifference << endl;
         //clear the counts vector and remake as all 0's
+        cout << "Permutation count for ME: ";
         for (int i = 0; i < counts.size(); ++i){
-            cout << counts[i] << ",";
+            if (i == 0) {
+                cout << counts[i];
+            } else {
+                cout << "," << counts[i];
+            }
         }
         counts.clear();
         counts.assign(permHolder.size(), 0);
@@ -249,6 +261,14 @@ public:
 //            totalDifference += abs(counts.at(i)-expectedCount);
 //        }
 //        cout << "Total differences for the SC randomizer: " << totalDifference << endl;
+//        cout << "Permutation count for SC: ";
+//        for (int i = 0; i < counts.size(); ++i){
+//            if (i == 0) {
+//                cout << counts[i];
+//            } else {
+//                cout << "," << counts[i];
+//            }
+//        }
 
 
     }

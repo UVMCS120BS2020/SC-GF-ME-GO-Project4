@@ -14,26 +14,32 @@ using namespace std;
 
 
 int main() {
-    vector<int> testVec = {1,2,3,4,5};
+    cout << "Testing effectiveness of each randomization method created" << endl;
+    cout << "Evaluation Metrics:" << endl;
+    cout << "Each permutation of the vector should have an equal likelihood of being created when randomized." << endl;
+    cout << "The randomization test will determine the difference in probabilities between the expected count for each permutation " << endl;
+    cout << "and the actual count for a set number of test samples." << endl;
+    cout << endl;
 
-
-    Tile test;
-    test = test.randomizeTile();
-    cout << test << endl;
-
-
-    // Test sort
-    vector<int> testVect;
-    for (int i = 0; i < 4; i++) {
-        testVect.push_back(rand() % 25);
+    // Create and test randomization on int vector and Tile vector
+    cout << "************* Randomization Method Test - Integer Vector *************" << endl;
+    vector<int> testVectInt;
+    for (int i = 0; i < 3; i++) {
+        testVectInt.push_back(rand() % 25);
     }
-    Items<int> items(testVect);
-    cout << "Unsorted elements: " << items << endl;
-    items.sort();
-    cout << "Sorted elements: " << items << endl;
+    Items<int> itemsInt(testVectInt);
+    itemsInt.testRandomizer();
+    cout << endl << endl;
 
-    items.randomizeME();
-    cout << (cout, items);
-    items.testRandomizer();
+    cout << "************* Randomization Method Test - Tile Vector *************" << endl;
+    vector<Tile> testVectTile;
+    for (int i = 0; i < 10; i++) {
+        Tile newTile;
+        newTile.randomizeTile();
+        testVectTile.push_back(newTile);
+    }
+    Items<int> itemsTile(testVectInt);
+    itemsTile.testRandomizer();
+
     return 0;
 }
