@@ -34,7 +34,7 @@ int main() {
 
     cout << "************* Randomization Method Test - Tile Vector *************" << endl;
     vector<Tile> testVectTile;
-    for (int i = 0; i < 7; i++) {
+    for (int i = 0; i < 5; i++) {
         Tile newTile;
         newTile = newTile.randomizeTile();
         testVectTile.push_back(newTile);

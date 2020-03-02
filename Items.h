@@ -105,20 +105,20 @@ public:
         // iterate through loop for 19 Tiles
         for (int i = 0; i < 19; i++) {
             // create and randomize new Tile object
-            Tile newTile;
+            Object newTile;
             newTile = newTile.randomizeTile();
             // check to see if this Tile is already in the vector
             for (int i = 0; i < fList.size(); i++) {
-                // randomize Tile until a new one is created
-                while (findObject(returnVector, newTile) != 1) {
+                // randomize Object until a new one is created
+                while (findObject(newTile) != 1) {
                     newTile = newTile.randomizeTile();
                 }
             }
-            // push new Tile object to vector
-            returnVector.push_back(newTile);
+            // push new object to vector
+            fList.push_back(newTile);
         }
-        // return vector of Tile objects
-        return returnVector;
+        // return vector of objects
+        return fList;
     }
 
     vector<Object>  randomizeME(){
