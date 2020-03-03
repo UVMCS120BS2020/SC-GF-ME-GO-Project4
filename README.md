@@ -1,6 +1,6 @@
-# SC-ME-GO-Project4
+# Testing Randomization Algorithms
 
-When creating a shuffling algorithm, values within a vector must be swapped around in a fashion that lets every possible
+For this project, our team created a series of different randomization algorithms and built a test suite to evaluate their effectiveness. When creating a shuffling algorithm, values within a vector must be swapped around in a fashion that lets every possible
 arrangement (a.k.a. permutation) have an equal likelihood of appearing. We use this notion as the basis for determining 
 the "effectiveness" of every randomizing function created. 
 
@@ -23,3 +23,5 @@ The differences between the expected and actual counts is tallied up at the end 
 our scoring is rooted in. The lower the average the more "effective" an algorithm is. A higher average can indicate 
 issues leading to permutations happening more/less frequently compared to what should statistically happen with a 
 perfect shuffle.
+
+# Analysis
