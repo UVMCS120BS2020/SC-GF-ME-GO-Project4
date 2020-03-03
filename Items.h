@@ -87,15 +87,6 @@ public:
         return -1;
     }
 
-    int find(vector<vector<Object>> vec, vector<Object> object) {
-        for (int i = 0; i < vec.size(); i++) {
-            if (vec.at(i) == object) {
-                return i;
-            }
-        }
-        return -1;
-    }
-
     // Randomization Methods
     // Requires: nothing
     // Modifies: fList
@@ -106,7 +97,7 @@ public:
             // reiterate through list
             for (Object j : fList) {
                 // swap different objects
-                if (i != j) {
+                if (!(i == j)) {
                     swap(fList[i], fList[j]);
                 // swap same object to last index position
                 } else {
@@ -151,7 +142,7 @@ public:
         }
     }
 
-    vector<Object> randomizeGF(vector<Object> fList){
+    vector<Object> randomizeGF(){
         int randomGF = 0;
         vector<int> takenNum;
         // for every item in fList, assign random position
@@ -203,7 +194,6 @@ public:
 
             //sort the list so that the randomizer starts at the same place every times
             sort();
-
         }
         //compare the counts of all of the permutations vs. expected frequency
         for (int i = 0; i < counts.size(); ++i) {
@@ -237,7 +227,6 @@ public:
 
             //sort the list so that the randomizer starts at the same place every times
             sort();
-
         }
         //compare the counts of all of the permutations vs. expected frequency
         for (int i = 0; i < counts.size(); ++i) {
@@ -261,43 +250,86 @@ public:
         avgDifference = 0;
 
         //run through the randomizer and keep track of counts for every permutation that results
-//        for(int i = 0; i < testSamples; ++i) {
-//            //randomize the vector
-//            randomizeSC();
-//            //find the shuffle permutation in possibilities
-//            auto iteration = find(permHolder.begin(), permHolder.end(), fList);
-//            int index = distance(permHolder.begin(), iteration);
-//            //increase count of that permutation
-//            counts.at(index) = counts.at(index) + 1;
-//
-//            //sort the list so that the randomizer starts at the same place every times
-//            sort();
-//
-//        }
-//        //compare the counts of all of the permutations vs. expected frequency
-//        for (int i = 0; i < counts.size(); ++i) {
-//            avgDifference += abs(counts.at(i)-expectedCount);
-//        }
-          // avgDifference /= counts.size();
-//        cout << "Average difference in expected count and actual count permutations for the SC randomizer: " << avgDifference << endl;
-//        cout << "Permutation count for SC: ";
-//        cout << "[";
-//        for (int i = 0; i < counts.size(); ++i){
-//            if (i == 0) {
-//                cout << counts[i];
-//            } else {
-//                cout << "," << counts[i];
-//            }
-//        }
-//        cout << "]" << endl;
+        for(int i = 0; i < testSamples; ++i) {
+            //randomize the vector
+            //randomizeSC();
+            //find the index in the permutations
+            int index = find(permHolder, fList);
 
+            //increase count of that permutation
+            counts[index] += 1;
 
+            //sort the list so that the randomizer starts at the same place every times
+            sort();
+        }
+        //compare the counts of all of the permutations vs. expected frequency
+        for (int i = 0; i < counts.size(); ++i) {
+            avgDifference += abs(counts.at(i)-expectedCount);
+        }
+        avgDifference /= counts.size();
+        cout << "\nAverage difference in expected count and actual count permutations for the SC randomizer: " << avgDifference << endl;
+        cout << "Permutation count for SC: ";
+        cout << "[";
+        for (int i = 0; i < counts.size(); ++i){
+            if (i == 0) {
+                cout << counts[i];
+            } else {
+                cout << "," << counts[i];
+            }
+        }
+        cout << "]" << endl;
+        counts.clear();
+        counts.assign(permHolder.size(), 0);
+        avgDifference = 0;
+
+        // run through the randomizer and keep track of counts for every permutation that results
+        for(int i = 0; i < testSamples; ++i) {
+            //randomizeGF();
+            //find the index in the permutations
+            int index = find(permHolder, fList);
+
+            //increase count of that permutation
+            counts[index] += 1;
+
+            //sort the list so that the randomizer starts at the same place every times
+            sort();
+        }
+        //compare the counts of all of the permutations vs. expected frequency
+        for (int i = 0; i < counts.size(); ++i) {
+            avgDifference += abs(counts[i]-expectedCount);
+        }
+        avgDifference /= counts.size();
+        cout << "\nAverage difference in expected count and actual count of permutations for the GF randomizer: " << avgDifference << endl;
+        //clear the counts vector and remake as all 0's
+        cout << "Permutation count distribution vector for GF: ";
+        cout << "[";
+        for (int i = 0; i < counts.size(); ++i){
+            if (i == 0) {
+                cout << counts[i];
+            } else {
+                cout << "," << counts[i];
+            }
+        }
+        cout << "]" << endl;
     }
 
 
 private:
     vector<Object> fList;
     int randConst = 7; // used for randomizeGO random number generation
+
+    // used in randomization testing method
+    // Requires: a vector of vectors to store all possible permutations of values, a vector containing one of these permutations
+    // Modifies: nothing
+    // Effects: Searches vector of permutations for unique object vector passed in. Returns index of that object if found and -1 otherwise
+    int find(vector<vector<Object>> vec, vector<Object> object) {
+        for (int i = 0; i < vec.size(); i++) {
+            if (vec.at(i) == object) {
+                return i;
+            }
+        }
+        return -1;
+    }
 };
 
 
