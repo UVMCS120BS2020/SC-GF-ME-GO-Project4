@@ -101,9 +101,9 @@ public:
     // Effects: randomizes order of objects in fList
     vector<Object> randomizeSC() {
         // iterate through list
-        for (Object i : fList) {
+        for (int i = 0; i < fList.size(); i++) {
             // reiterate through list
-            for (Object j : fList) {
+            for (int j = 0; i < fList.size(); i++) {
                 // swap different objects
                 if (i != j) {
                     swap(fList[i], fList[j]);
