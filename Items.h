@@ -123,6 +123,9 @@ public:
         return fList;
     }
 
+    // Requires: nothing
+    // Modifies: fList
+    // Effects: randomizes order of objects in fList
     vector<Object>  randomizeME(){
         //set t as the current time
         time_t t = clock();
@@ -144,6 +147,9 @@ public:
         return fList;
     }
 
+    // Requires: nothing
+    // Modifies: fList
+    // Effects: randomizes order of objects in fList
     void randomizeGO() {
         // loop through all items in fList vector
         // for each iteration, get a random index and swap item with object at that index
@@ -165,6 +171,9 @@ public:
         }
     }
 
+    // Requires: nothing
+    // Modifies: fList
+    // Effects: randomizes order of objects in fList
     vector<Object> randomizeGF(){
         int randomGF = 0;
         vector<int> takenNum;
@@ -181,6 +190,10 @@ public:
         return fList;
     }
 
+    // Requires: nothing
+    // Modifies: nothing
+    // Effects: runs through a series of randomization functions and compares the resulting permutations
+    //      with the theoretical expected counts. Displays the findings of the tests.
     void testRandomizer() {
         //create vector to hold all possible permutations of the test vector
         vector<vector<Object>> permHolder;
