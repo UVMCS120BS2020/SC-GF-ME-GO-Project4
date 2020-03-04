@@ -168,6 +168,7 @@ public:
     vector<Object> randomizeGF(){
         int randomGF = 0;
         vector<int> takenNum;
+        vector<Object> copyVec = fList;
         // for every item in fList, assign random position
         for (int i = 0; i < fList.size(); ++i){
             randomGF = rand()%fList.size();
@@ -176,9 +177,9 @@ public:
                 randomGF = rand()%fList.size();
             }
             takenNum.push_back(randomGF);
-            swap(fList[i], fList[randomGF]);
+            copyVec[randomGF] = fList[i];
         }
-        return fList;
+        return copyVec;
     }
 
     void testRandomizer() {
