@@ -66,7 +66,7 @@ Since it is possible to get duplicate values in these vectors, the number of pos
  
  **Tile Vector Average Difference Count** - 15.922
  
- My function uses time as well. By taking in the value of clock() with every iteration the value is constantly changing and thus can create a different swap with every iteration. The rand() function uses time as the basis for creating a pseudo random value, so by going to the source (time itself) I am able to circumvent using the rand() function. Every iteration also multiplies the value by a prime number to add another force of randomization and a wider range of swaps.
+ My function uses time as well. By taking in the value of clock() with every iteration the value is constantly changing and thus can create a different swap with every iteration. The rand() function uses time as the basis for creating a pseudo random value, so by going to the source (time itself) I am able to circumvent using the rand() function. Every iteration also multiplies the value by a prime number to add another force of randomization and a wider range of swaps. I consider the overall "effectiveness" of my algorithm mediocre. It results in every permutation possible given the testing parameters, but comes out with the worst average score out of our functions.
 
 <br/>
 
