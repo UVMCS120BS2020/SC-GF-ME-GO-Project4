@@ -182,7 +182,7 @@ public:
         for (int i = 0; i < fList.size(); ++i){
             randomGF = rand()%fList.size();
             // make sure the random isn't already chosen
-            while (find(takenNum.begin(), takenNum.end(), randomGF) != takenNum.end()){
+            while (findPermutation(takenNum.begin(), takenNum.end(), randomGF) != takenNum.end()){
                 randomGF = rand()%fList.size();
             }
             takenNum.push_back(randomGF);
@@ -201,7 +201,7 @@ public:
 
         //sort the list
         sort();
-        //find all possible permutations of the list and add to vector
+        //findPermutation all possible permutations of the list and add to vector
         do {
             permHolder.push_back(fList);
 
@@ -223,8 +223,8 @@ public:
         // run through the randomizer and keep track of counts for every permutation that results
         for(int i = 0; i < testSamples; ++i) {
             randomizeGO();
-            //find the index in the permutations
-            int index = find(permHolder, fList);
+            //findPermutation the index in the permutations
+            int index = findPermutation(permHolder, fList);
 
             //increase count of that permutation
             counts[index] += 1;
@@ -256,8 +256,8 @@ public:
         //run through the randomizer and keep track of counts for every permutation that results
         for(int i = 0; i < testSamples; ++i) {
             randomizeME();
-            //find the index in the permutations
-            int index = find(permHolder, fList);
+            //findPermutation the index in the permutations
+            int index = findPermutation(permHolder, fList);
 
             //increase count of that permutation
             counts[index] += 1;
@@ -290,8 +290,8 @@ public:
         for(int i = 0; i < testSamples; ++i) {
             //randomize the vector
             fList = randomizeSC();
-            //find the index in the permutations
-            int index = find(permHolder, fList);
+            //findPermutation the index in the permutations
+            int index = findPermutation(permHolder, fList);
 
             //increase count of that permutation
             counts[index] += 1;
@@ -322,8 +322,8 @@ public:
         // run through the randomizer and keep track of counts for every permutation that results
         for(int i = 0; i < testSamples; ++i) {
             //randomizeGF();
-            //find the index in the permutations
-            int index = find(permHolder, fList);
+            //findPermutation the index in the permutations
+            int index = findPermutation(permHolder, fList);
 
             //increase count of that permutation
             counts[index] += 1;
@@ -359,7 +359,7 @@ private:
     // Requires: a vector of vectors to store all possible permutations of values, a vector containing one of these permutations
     // Modifies: nothing
     // Effects: Searches vector of permutations for unique object vector passed in. Returns index of that object if found and -1 otherwise
-    int find(vector<vector<Object>> vec, vector<Object> object) {
+    int findPermutation(vector<vector<Object>> vec, vector<Object> object) {
         for (int i = 0; i < vec.size(); i++) {
             if (vec.at(i) == object) {
                 return i;
