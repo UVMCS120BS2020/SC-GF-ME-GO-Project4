@@ -24,4 +24,25 @@ our scoring is rooted in. The lower the average the more "effective" an algorith
 issues leading to permutations happening more/less frequently compared to what should statistically happen with a 
 perfect shuffle.
 
+// Discussion on Catan Tile class here
+
 # Analysis
+
+In our program, we created two vectors to test our randomization function against, one of integers and one of our Catan Tile objects. We added 3 random integers to our integer vector and 5 random tiles to our tile vector, giving us a maximum number of permutations of 3! = 6 for the random integers and 5! = 120 for the tiles. We chose to use vectors with a relatively low number of elements due to the exponential increase in permutation calculations as the vector size grows. We felt that the number of possible permutations for the vectors in combination with our large test sample size(1000) gave us solid quantifiable data to analyze our algorithms without hurting the runtime of our program.
+
+Since it is possible to get duplicate values in these vectors, the number of possible permutations could vary each time the program is run. The following is data we collected for each of our randomization functions when all elements of the vectors were unique and an analysis of each of our algorithms:
+
+Test Count for each vector - 1000
+Integer Vector Expected Count for each Permutation - 166.667
+Tile Vector Expected Count for each Permutation - 8.333
+
+- GO
+
+
+- ME
+
+
+- SC
+
+
+- GF
