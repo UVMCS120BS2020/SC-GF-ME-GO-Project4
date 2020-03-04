@@ -6,10 +6,13 @@
 #ifndef PROJECT4_ITEMS_H
 #define PROJECT4_ITEMS_H
 
+#include <chrono>
 #include <algorithm>
 #include <vector>
 #include <iostream>
 #include <cmath>
+#include <stdio.h>
+#include <cstdlib>
 #include <chrono>
 #include "Tile.h"
 #include "time.h"
@@ -86,26 +89,17 @@ public:
         return -1;
     }
 
-    int find(vector<vector<Object>> vec, vector<Object> object) {
-        for (int i = 0; i < vec.size(); i++) {
-            if (vec.at(i) == object) {
-                return i;
-            }
-        }
-        return -1;
-    }
-
     // Randomization Methods
     // Requires: nothing
     // Modifies: fList
     // Effects: randomizes order of objects in fList
-    vector<Object> randomizeSC() {
+    void randomizeSC() {
         // iterate through list
         for (int i = 0; i < fList.size(); i++) {
             // reiterate through list
             for (int j = 0; i < fList.size(); i++) {
                 // swap different objects
-                if (i != j) {
+                if (!(i == j)) {
                     swap(fList[i], fList[j]);
                 // swap same object to last index position
                 } else {
@@ -113,16 +107,22 @@ public:
                 }
             }
         }
-        // return vector of objects
-        return fList;
     }
 
     vector<Object>  randomizeME(){
-
-
+        //set t as the current time
+        time_t t = clock();
+        //r will be the index to swap with
+        int r;
+        //loop through every value in the vector
         for (int i = 0 ;i < fList.size(); ++i){
-            int r = rand() %fList.size();
+            //multiply the clock by a prime number and increase
+            t += (clock()*31);
 
+            //mod by the size of the vector so the index is in range
+            r = t%fList.size();
+
+            //swap the indices
             swap(fList[i], fList[r]);
 
         }
@@ -149,6 +149,22 @@ public:
             fList.at(i) = fList.at(randIndex);
             fList.at(randIndex) = temp;
         }
+    }
+
+    vector<Object> randomizeGF(){
+        int randomGF = 0;
+        vector<int> takenNum;
+        // for every item in fList, assign random position
+        for (int i = 0; i < fList.size(); ++i){
+            randomGF = rand()%fList.size();
+            // make sure the random isn't already chosen
+            while (find(takenNum.begin(), takenNum.end(), randomGF) != takenNum.end()){
+                randomGF = rand()%fList.size();
+            }
+            takenNum.push_back(randomGF);
+            swap(fList[i], fList[randomGF]);
+        }
+        return fList;
     }
 
     void testRandomizer() {
@@ -187,7 +203,6 @@ public:
 
             //sort the list so that the randomizer starts at the same place every times
             sort();
-
         }
         //compare the counts of all of the permutations vs. expected frequency
         for (int i = 0; i < counts.size(); ++i) {
@@ -221,7 +236,6 @@ public:
 
             //sort the list so that the randomizer starts at the same place every times
             sort();
-
         }
         //compare the counts of all of the permutations vs. expected frequency
         for (int i = 0; i < counts.size(); ++i) {
@@ -245,43 +259,86 @@ public:
         avgDifference = 0;
 
         //run through the randomizer and keep track of counts for every permutation that results
-//        for(int i = 0; i < testSamples; ++i) {
-//            //randomize the vector
-//            randomizeSC();
-//            //find the shuffle permutation in possibilities
-//            auto iteration = find(permHolder.begin(), permHolder.end(), fList);
-//            int index = distance(permHolder.begin(), iteration);
-//            //increase count of that permutation
-//            counts.at(index) = counts.at(index) + 1;
-//
-//            //sort the list so that the randomizer starts at the same place every times
-//            sort();
-//
-//        }
-//        //compare the counts of all of the permutations vs. expected frequency
-//        for (int i = 0; i < counts.size(); ++i) {
-//            avgDifference += abs(counts.at(i)-expectedCount);
-//        }
-          // avgDifference /= counts.size();
-//        cout << "Average difference in expected count and actual count permutations for the SC randomizer: " << avgDifference << endl;
-//        cout << "Permutation count for SC: ";
-//        cout << "[";
-//        for (int i = 0; i < counts.size(); ++i){
-//            if (i == 0) {
-//                cout << counts[i];
-//            } else {
-//                cout << "," << counts[i];
-//            }
-//        }
-//        cout << "]" << endl;
+        for(int i = 0; i < testSamples; ++i) {
+            //randomize the vector
+            randomizeSC();
+            //find the index in the permutations
+            int index = find(permHolder, fList);
 
+            //increase count of that permutation
+            counts[index] += 1;
 
+            //sort the list so that the randomizer starts at the same place every times
+            sort();
+        }
+        //compare the counts of all of the permutations vs. expected frequency
+        for (int i = 0; i < counts.size(); ++i) {
+            avgDifference += abs(counts.at(i)-expectedCount);
+        }
+        avgDifference /= counts.size();
+        cout << "\nAverage difference in expected count and actual count permutations for the SC randomizer: " << avgDifference << endl;
+        cout << "Permutation count for SC: ";
+        cout << "[";
+        for (int i = 0; i < counts.size(); ++i){
+            if (i == 0) {
+                cout << counts[i];
+            } else {
+                cout << "," << counts[i];
+            }
+        }
+        cout << "]" << endl;
+        counts.clear();
+        counts.assign(permHolder.size(), 0);
+        avgDifference = 0;
+
+        // run through the randomizer and keep track of counts for every permutation that results
+        for(int i = 0; i < testSamples; ++i) {
+            //randomizeGF();
+            //find the index in the permutations
+            int index = find(permHolder, fList);
+
+            //increase count of that permutation
+            counts[index] += 1;
+
+            //sort the list so that the randomizer starts at the same place every times
+            sort();
+        }
+        //compare the counts of all of the permutations vs. expected frequency
+        for (int i = 0; i < counts.size(); ++i) {
+            avgDifference += abs(counts[i]-expectedCount);
+        }
+        avgDifference /= counts.size();
+        cout << "\nAverage difference in expected count and actual count of permutations for the GF randomizer: " << avgDifference << endl;
+        //clear the counts vector and remake as all 0's
+        cout << "Permutation count distribution vector for GF: ";
+        cout << "[";
+        for (int i = 0; i < counts.size(); ++i){
+            if (i == 0) {
+                cout << counts[i];
+            } else {
+                cout << "," << counts[i];
+            }
+        }
+        cout << "]" << endl;
     }
 
 
 private:
     vector<Object> fList;
     int randConst = 7; // used for randomizeGO random number generation
+
+    // used in randomization testing method
+    // Requires: a vector of vectors to store all possible permutations of values, a vector containing one of these permutations
+    // Modifies: nothing
+    // Effects: Searches vector of permutations for unique object vector passed in. Returns index of that object if found and -1 otherwise
+    int find(vector<vector<Object>> vec, vector<Object> object) {
+        for (int i = 0; i < vec.size(); i++) {
+            if (vec.at(i) == object) {
+                return i;
+            }
+        }
+        return -1;
+    }
 };
 
 
