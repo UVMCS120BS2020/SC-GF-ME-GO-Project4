@@ -182,7 +182,7 @@ public:
         for (int i = 0; i < fList.size(); ++i){
             randomGF = rand()%fList.size();
             // make sure the random isn't already chosen
-            while (findPermutation(takenNum.begin(), takenNum.end(), randomGF) != takenNum.end()){
+            while (find(takenNum.begin(), takenNum.end(), randomGF) != takenNum.end()){
                 randomGF = rand()%fList.size();
             }
             takenNum.push_back(randomGF);
@@ -321,7 +321,7 @@ public:
 
         // run through the randomizer and keep track of counts for every permutation that results
         for(int i = 0; i < testSamples; ++i) {
-            //randomizeGF();
+            fList = randomizeGF();
             //findPermutation the index in the permutations
             int index = findPermutation(permHolder, fList);
 
