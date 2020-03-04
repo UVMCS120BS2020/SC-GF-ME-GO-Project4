@@ -54,7 +54,7 @@ Since it is possible to get duplicate values in these vectors, the number of pos
 
 - ME
 
- My function uses time as well. By taking in the value of clock() with every iteration the value is constantly changing and thus can create a different swap with every iteration. The rand() function uses time as the basis for creating a pseudo random value, so by going to the source (time itself) I am able to circumvent using the rand() function. Every iteration also multiplies the value by a prime number to add another force of randomization.
+ My function uses time as well. By taking in the value of clock() with every iteration the value is constantly changing and thus can create a different swap with every iteration. The rand() function uses time as the basis for creating a pseudo random value, so by going to the source (time itself) I am able to circumvent using the rand() function. Every iteration multiplies clock() by a prime number to facilitate a wider range of swaps.
 
 - SC
 
