@@ -61,10 +61,9 @@ Tile Tile::randomizeTile() {
 int Tile::randomizeNumber() {
     // initialize variables
     int returnNumber;
-    int maxNumberRand = 19;
     vector<int> possibleNumbers = {2, 3, 3, 4, 4, 5, 5, 6, 6, 8, 8, 9, 9, 10, 10, 11, 11, 12};
     // use rand function to get random index value
-    int randomNumberIndex = rand() % maxNumberRand;
+    int randomNumberIndex = rand() % possibleNumbers.size();
     // get randomNumber from vector of possible values and return
     returnNumber = possibleNumbers[randomNumberIndex];
     return returnNumber;
@@ -98,8 +97,4 @@ bool operator < (const Tile &lhs, const Tile &rhs) {
 // ==
 bool operator == (const Tile &lhs, const Tile &rhs) {
     return lhs.fNumber == rhs.fNumber;
-}
-// +
-int operator * (const Tile &lhs, const unsigned int &rhs) {
-    return lhs.fNumber * rhs;
 }
