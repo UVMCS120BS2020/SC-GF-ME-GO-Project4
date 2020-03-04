@@ -74,10 +74,9 @@ int Tile::randomizeNumber() {
 string Tile::randomizeResource() {
     // initialize variables
     string returnResource;
-    int maxResourceRand = 20;
     vector<string> possibleResources = {"wood", "wood", "wood", "wood", "sheep", "sheep", "sheep", "sheep", "wheat", "wheat", "wheat", "wheat", "brick", "brick", "brick", "stone", "stone", "stone", "desert"};
     // use rand function to get random index value
-    int randomResourceIndex = rand() % maxResourceRand;
+    int randomResourceIndex = rand() % possibleResources.size();
     // get randomResource from vector of possible values and return
     returnResource = possibleResources[randomResourceIndex];
     return returnResource;
