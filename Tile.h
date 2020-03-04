@@ -90,6 +90,7 @@ public:
     friend bool operator == (const Tile &lhs, const Tile &rhs);
 
 
+
 private:
     // Fields
     int fNumber; // the dice roll number needed to collect

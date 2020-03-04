@@ -62,7 +62,7 @@ Since it is possible to get duplicate values in these vectors, the number of pos
 
 - ME
 
- **Integer Vector Average Difference Count** - 166.667
+ **Integer Vector Average Difference Count** - 58.3333
  
  **Tile Vector Average Difference Count** - 15.922
  
