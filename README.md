@@ -32,12 +32,15 @@ In our program, we created two vectors to test our randomization function agains
 
 Since it is possible to get duplicate values in these vectors, the number of possible permutations could vary each time the program is run. The following is data we collected for each of our randomization functions when all elements of the vectors were unique and an analysis of each of our algorithms:
 
-Test Count for each vector - 1000
-Integer Vector Expected Count for each Permutation - 166.667
-Tile Vector Expected Count for each Permutation - 8.333
+**Test Count for each vector** - 1000
+
+**Integer Vector Expected Count for each Permutation** - 166.667
+
+**Tile Vector Expected Count for each Permutation** - 8.333
 
 - GO
-
+ 
+ For my function, I decided to use time to randomize the vector in our class. In my method, for each element in the vector I got a random index and swapped the element with the element at that index. To get this random index, I got the current time in nano seconds in each for loop iteration and hashed it to a index in our vector. To add another layer of randomization, I added this time with a random constant that was recalculated each loop using the previous value.
 
 - ME
 
