@@ -77,6 +77,7 @@ Since it is possible to get duplicate values in these vectors, the number of pos
 **Tile Vector Average Difference Count** - 3.739
 
 In my function, I used the rand() function with two for loops that iterate through the vector so that it can compare each item at a time. If the two objects being compared are different, it will swap the two object's positions and will then swap the first object (now in the second one's previous position) with an object at a random index. If the two objects are the same, it will swap that object with the last index value before swapping with a random index.
+Looking at the results of my randomize functions, I would say they work pretty efficiently. I had a much lower average difference count for the vector of Tiles than the vector of integers, but overall saw solid randomness. Although I wish I could've figured out an algorithm without the rand function.
 
 <br/>
 
