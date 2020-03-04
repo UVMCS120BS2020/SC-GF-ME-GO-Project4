@@ -104,7 +104,7 @@ public:
                 // objects in comparison are different
                 if (!(fList[i] == fList[j])) {
                     // get random index value
-                    randIndex = rand() % fList.size();
+                    randIndex = rand() % maxRandIndex;
                     // swap different objects
                     swap(fList[i], fList[j]);
                     // swap with random object
@@ -112,7 +112,7 @@ public:
                 // objects in comparison are the same
                 } else {
                     // get random index value
-                    randIndex = rand() % fList.size();
+                    randIndex = rand() % maxRandIndex;
                     // swap with last object
                     swap(fList[i], fList[fList.size() - 1]);
                     // swap with random object
@@ -205,7 +205,7 @@ public:
         do {
             permHolder.push_back(fList);
 
-        } while ( std::next_permutation(fList.begin(), fList.end()));
+        } while (next_permutation(fList.begin(), fList.end()));
 
         //create vector that matches with possible permutations and starts with all 0's
         //will hold the final counts of each permutation created with randomize functions

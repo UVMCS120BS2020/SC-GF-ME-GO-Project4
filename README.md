@@ -56,7 +56,7 @@ Since it is possible to get duplicate values in these vectors, the number of pos
  
  **Tile Vector Average Difference Count** - 7.856
  
- For my function, I decided to use time to randomize the vector in our class. In my method, for each element in the vector I got a random index and swapped the element with the element at that index. To get this random index, I got the current time in nano seconds in each for loop iteration and hashed it to a index in our vector. To add another layer of randomization, I added this time with a random constant that was recalculated each loop using the previous value.
+ For my function, I decided to use time to randomize the vector in our class. In my method, for each element in the vector I got a random index and swapped the element with the element at that index. To get this random index, I got the current time in nano seconds in each for loop iteration and hashed it to a index in our vector. To add another layer of randomization, I added this time with a random constant that was recalculated each loop using the previous value. Overall, I am happy with how my algorithm performed in regards to the average difference between my counts and expected counts for each permutation. This means that my overall distribution was relatively even across all of the possible permutations for the vector. While the psuedo-randomization in my function did not perform as well as the rand() functions, I still think it performed well given that I did not use a buit in randomization feature.
 
 <br/>
 
