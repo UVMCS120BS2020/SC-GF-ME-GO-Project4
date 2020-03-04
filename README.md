@@ -24,7 +24,17 @@ our scoring is rooted in. The lower the average the more "effective" an algorith
 issues leading to permutations happening more/less frequently compared to what should statistically happen with a 
 perfect shuffle.
 
-// Discussion on Catan Tile class here
+# Tile Class
+
+The inspiration for our Tile class comes from the board game Settler's of Catan. In this game, the board is made up of
+hexagonal tiles that each represent a different resource; wheat, sheep, wood, brick, and stone. Each tile is then given
+a number spanning from 2-12 (not including 7 which represents the robber on the desert tile). These numbers represent 
+dice rolls that allows players built on that specific tile to collect the resource. In order to create variety, the 
+resource tiles and dice roll numbers are randomized so that each board feels new and offers different strategies the 
+players can work around. So for our Tile class, the resource type and dice roll number represent its two fields. The 
+non-trivial functions included are two functions that will randomize a Tile's resource or number value, as well as one
+function that calls both of these to randomize a completely new Tile. At the bottom of our Tile class, there are a few
+overloaded operators to help us compare two Tile objects.
 
 # Analysis
 
@@ -47,5 +57,6 @@ Since it is possible to get duplicate values in these vectors, the number of pos
 
 - SC
 
+In my function, I used the rand() function with two for loops that iterate through the vector so that it can compare each item at a time. If the two objects being compared are different, it will swap the two object's positions and will then swap the first object (now in the second one's previous position) with an object at a random index. If the two objects are the same, it will swap that object with the last index value before swapping with a random index.
 
 - GF
