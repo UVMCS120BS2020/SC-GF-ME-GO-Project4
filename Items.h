@@ -6,10 +6,12 @@
 #ifndef PROJECT4_ITEMS_H
 #define PROJECT4_ITEMS_H
 
+#include <chrono>
 #include <algorithm>
 #include <vector>
 #include <iostream>
 #include <cmath>
+#include <stdio.h>
 #include <cstdlib>
 #include <chrono>
 #include "Tile.h"
@@ -110,10 +112,19 @@ public:
     }
 
     vector<Object>  randomizeME(){
-
+        //set t as the current time
+        time_t t = clock();
+        //r will be the index to swap with
+        int r;
+        //loop through every value in the vector
         for (int i = 0 ;i < fList.size(); ++i){
-            int r = rand() %fList.size();
+            //multiply the clock by a prime number and increase
+            t += (clock()*31);
 
+            //mod by the size of the vector so the index is in range
+            r = t%fList.size();
+
+            //swap the indices
             swap(fList[i], fList[r]);
 
         }
