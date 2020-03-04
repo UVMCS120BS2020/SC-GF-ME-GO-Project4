@@ -128,13 +128,13 @@ public:
     // Effects: randomizes order of objects in fList
     vector<Object>  randomizeME(){
         //set t as the current time
-        time_t t = clock();
+        time_t t;
         //r will be the index to swap with
         int r;
         //loop through every value in the vector
         for (int i = 0 ;i < fList.size(); ++i){
             //multiply the clock by a prime number and increase
-            t += (clock()*31);
+            t = (31*(clock()));
 
             //mod by the size of the vector so the index is in range
             r = t%fList.size();

@@ -89,7 +89,7 @@ public:
     // Effects: returns true if lhs Tile number is equal to the rhs Tile number and false otherwise
     friend bool operator == (const Tile &lhs, const Tile &rhs);
 
-    friend int operator * (const Tile &lhs, const unsigned int &rhs);
+
 
 private:
     // Fields

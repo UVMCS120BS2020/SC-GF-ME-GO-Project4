@@ -62,11 +62,11 @@ Since it is possible to get duplicate values in these vectors, the number of pos
 
 - ME
 
- **Integer Vector Average Difference Count** - 166.667
+ **Integer Vector Average Difference Count** - 58.3333
  
  **Tile Vector Average Difference Count** - 15.922
  
- My function uses time as well. By taking in the value of clock() with every iteration the value is constantly changing and thus can create a different swap with every iteration. The rand() function uses time as the basis for creating a pseudo random value, so by going to the source (time itself) I am able to circumvent using the rand() function. Every iteration also multiplies the value by a prime number to add another force of randomization.
+ My function uses time as well. By taking in the value of clock() with every iteration the value is constantly changing and thus can create a different swap with every iteration. The rand() function uses time as the basis for creating a pseudo random value, so by going to the source (time itself) I am able to circumvent using the rand() function. Every iteration also multiplies the value by a prime number to add another force of randomization and a wider range of swaps.
 
 <br/>
 
@@ -81,6 +81,8 @@ In my function, I used the rand() function with two for loops that iterate throu
 <br/>
 
 - GF
+
+In my function, I used the rand() to get a random integer in the range of the size of the list from zero-size, and then I added this number to a vector of integers called takenNum, to represent random values that are already assigned. I use a while loop to check to make sure the random int is not in the vector (using the find iterator), and if it is not I change the index at the random number of a copyVector to the value of the original vector at i from the for loop. Finally, I return the randomized vector. NOTE: I joined the project late and was not able to contribute significantly.
 
 **Integer Vector Average Difference Count** - 9.222
 

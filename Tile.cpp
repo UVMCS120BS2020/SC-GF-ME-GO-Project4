@@ -98,7 +98,3 @@ bool operator < (const Tile &lhs, const Tile &rhs) {
 bool operator == (const Tile &lhs, const Tile &rhs) {
     return lhs.fNumber == rhs.fNumber;
 }
-// +
-int operator * (const Tile &lhs, const unsigned int &rhs) {
-    return lhs.fNumber * rhs;
-}
