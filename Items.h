@@ -93,20 +93,34 @@ public:
     // Requires: nothing
     // Modifies: fList
     // Effects: randomizes order of objects in fList
-    void randomizeSC() {
+    vector<Object> randomizeSC() {
+        // initialize random variables
+        int randIndex = 0;
+        int maxRandIndex = fList.size();
         // iterate through list
         for (int i = 0; i < fList.size(); i++) {
             // reiterate through list
             for (int j = 0; i < fList.size(); i++) {
-                // swap different objects
-                if (!(i == j)) {
+                // objects in comparison are different
+                if (!(fList[i] == fList[j])) {
+                    // get random index value
+                    randIndex = rand() % fList.size();
+                    // swap different objects
                     swap(fList[i], fList[j]);
-                // swap same object to last index position
+                    // swap with random object
+                    swap(fList[randIndex], fList[i]);
+                // objects in comparison are the same
                 } else {
+                    // get random index value
+                    randIndex = rand() % fList.size();
+                    // swap with last object
                     swap(fList[i], fList[fList.size() - 1]);
+                    // swap with random object
+                    swap(fList[randIndex], fList[i]);
                 }
             }
         }
+        return fList;
     }
 
     vector<Object>  randomizeME(){
@@ -261,7 +275,7 @@ public:
         //run through the randomizer and keep track of counts for every permutation that results
         for(int i = 0; i < testSamples; ++i) {
             //randomize the vector
-            randomizeSC();
+            fList = randomizeSC();
             //find the index in the permutations
             int index = find(permHolder, fList);
 
