@@ -82,6 +82,8 @@ In my function, I used the rand() function with two for loops that iterate throu
 
 - GF
 
+In my function, I used the rand() to get a random integer in the range of the size of the list from zero-size, and then I added this number to a vector of integers called takenNum, to represent random values that are already assigned. I use a while loop to check to make sure the random int is not in the vector (using the find iterator), and if it is not I change the index at the random number of a copyVector to the value of the original vector at i from the for loop. Finally, I return the randomized vector. NOTE: I joined the project late and was not able to contribute significantly.
+
 **Integer Vector Average Difference Count** - 9.222
 
 **Tile Vector Average Difference Count** - 2.04
